@@ -1,0 +1,32 @@
+// Auto-generate 'csch_name' field based on selected dance and music lookups
+function setNameField(executionContext) {
+    // Get the current form context
+    var ctx = executionContext.getFormContext();
+
+    // Helper function to retrieve the name from a lookup field
+    var getName = attr => {
+        var val = ctx.getAttribute(attr)?.getValue();
+        if (val?.length) {
+            console.log(`${attr} Lookup Object Entries:`, Object.entries(val[0]));
+            return val[0].name;
+        }
+        return "";
+    };
+
+    // Get selected names from the 'csch_dance' and 'csch_music' lookup fields
+    var danceName = getName("csch_dance");
+    var musicName = getName("csch_music");
+
+    // Set the value of 'csch_name' field using the combined names
+    ctx.getAttribute("csch_name")?.setValue(`${danceName} to ${musicName}`);
+}
+
+function onLoad(executionContext) {
+    // Get the current form context
+    var ctx = executionContext.getFormContext();
+
+    // Register the setNameField function to run on change of both lookup fields
+    ["csch_dance", "csch_music"].forEach(attr => {
+        ctx.getAttribute(attr)?.addOnChange(setNameField);
+    });
+} 

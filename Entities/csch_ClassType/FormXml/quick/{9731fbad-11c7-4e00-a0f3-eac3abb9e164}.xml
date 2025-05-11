@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{9731fbad-11c7-4e00-a0f3-eac3abb9e164}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{0ac441a0-833b-4333-ac66-da6ecd5b7666}" IsUserDefined="1">
+          <labels>
+            <label description="" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{79422c27-7287-42d4-83da-e2d5fd9b5f77}">
+                  <labels>
+                    <label description="GENERAL" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{17c16d68-0e82-42e2-964b-cbf097cdd40e}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="csch_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="csch_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{02db4654-dba1-49ba-9807-6661b30654c0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Venue" languagecode="1033" />
+                        </labels>
+                        <control id="csch_venue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="csch_venue" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d6d3a72d-040c-4475-89fc-f487f1a2a8bd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Student Level(s)" languagecode="1033" />
+                        </labels>
+                        <control id="csch_level" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="csch_level" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f437a9ca-9a1d-4b09-a595-f6b70ee04d0b}" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

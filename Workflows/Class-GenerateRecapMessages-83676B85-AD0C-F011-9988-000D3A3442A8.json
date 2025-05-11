@@ -1,0 +1,185 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "csch_sharedcommondataserviceforapps_39295"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "ApiConnection",
+          "inputs": {
+            "operationId": "RecordSelected",
+            "parameters": {
+              "entityName": "csch_classrecords"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity": {
+                        "properties": {
+                          "csch_classrecordid": {
+                            "title": "Class Record",
+                            "type": "string",
+                            "format": "guid"
+                          }
+                        },
+                        "type": "object",
+                        "required": []
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "rows"
+              ]
+            },
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_commondataserviceforapps']['connectionId']"
+              }
+            }
+          },
+          "splitOn": "@triggerBody()['rows']",
+          "metadata": {
+            "operationMetadataId": "d485072c-7974-460a-aa3b-58895dd9062f"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_objWorkflowInfo": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "objWorkflowInfo",
+                "type": "object",
+                "value": "@workflow()"
+              }
+            ]
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c476a8a7-ea58-477d-843f-7f02731b4019"
+          }
+        },
+        "Initialize_strClassRecordGUID": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strClassRecordGUID",
+                "type": "string",
+                "value": "@triggerBody()?['entity']['csch_classrecordid']"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_objWorkflowInfo": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Get_a_row_by_ID": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "csch_classrecords",
+              "recordId": "@variables('strClassRecordGUID')",
+              "$expand": "csch_ClassAttend_Relationship($select=emailaddress1,fullname), csch_DancesTaughtInClass_Relationship($select=_csch_music_value,_csch_dance_value;$expand=csch_Dance($select=csch_stepsheet),csch_Music($select=_csch_primaryartist_value))"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          },
+          "runAfter": {
+            "Initialize_strClassRecordGUID": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Initialize_arrStudents": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrStudents",
+                "type": "array",
+                "value": "@outputs('Get_a_row_by_ID')?['body/csch_ClassAttend_Relationship']"
+              }
+            ]
+          },
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Initialize_arrDancesTaughtInClass": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrDancesTaughtInClass",
+                "type": "array",
+                "value": "@outputs('Get_a_row_by_ID')?['body/csch_DancesTaughtInClass_Relationship']"
+              }
+            ]
+          },
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          }
+        },
+        "FX002_-_Update_Dances_Taught_Table_Preview": {
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "8c718853-b80c-f011-9988-000d3a3442a8"
+            },
+            "body": {
+              "text": "@string(variables('arrDancesTaughtInClass'))",
+              "text_1": "@variables('strClassRecordGUID')"
+            }
+          },
+          "runAfter": {
+            "Initialize_arrDancesTaughtInClass": [
+              "Succeeded"
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

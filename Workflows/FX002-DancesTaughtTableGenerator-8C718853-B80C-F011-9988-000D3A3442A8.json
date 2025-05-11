@@ -1,0 +1,643 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "csch_sharedcommondataserviceforapps_39295"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Dance Array",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Dance Array in JSON format",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "description": "GUID of the class record",
+                  "title": "Class Record GUID",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "2b9996de-3a76-49f6-8cd6-6c0032700878"
+          }
+        }
+      },
+      "actions": {
+        "Parse_Dance_Array": {
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()['text']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@@odata.type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "@@odata.id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "@@odata.etag": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "@@odata.editLink": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_music_value@OData.Community.Display.V1.FormattedValue": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_music_value@Microsoft.Dynamics.CRM.associatednavigationproperty": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_music_value@Microsoft.Dynamics.CRM.lookuplogicalname": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_music_value@odata.type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_music_value": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "csch_dancemusicpairingid@odata.type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "csch_dancemusicpairingid": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_dance_value@OData.Community.Display.V1.FormattedValue": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_dance_value@Microsoft.Dynamics.CRM.associatednavigationproperty": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_dance_value@Microsoft.Dynamics.CRM.lookuplogicalname": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_dance_value@odata.type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "_csch_dance_value": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "csch_Dance@odata.associationLink": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "csch_Dance@odata.navigationLink": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "csch_Dance": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "@@odata.type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "@@odata.id": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "@@odata.editLink": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "csch_stepsheet": {},
+                      "csch_danceid@odata.type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "csch_danceid": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "__DisplayName__": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "IsReferencedQueryCall": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "csch_Music@odata.associationLink": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "csch_Music@odata.navigationLink": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "csch_Music": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "@@odata.type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "@@odata.id": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "@@odata.editLink": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "csch_musicid@odata.type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "csch_musicid": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "_csch_primaryartist_value": {},
+                      "__DisplayName__": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "IsReferencedQueryCall": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "0f290be0-ec9b-41bb-9a0d-9d3ffabd3c5e"
+          }
+        },
+        "Success_Response": {
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status_code": {
+                  "title": "Status Code",
+                  "x-ms-dynamically-added": true,
+                  "type": "number"
+                },
+                "error_message": {
+                  "title": "Error Message",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "html_table": {
+                  "title": "HTML Table",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "status_code": 200,
+              "html_table": "@{body('Create_HTML_table')}"
+            }
+          },
+          "runAfter": {
+            "Update_HTML_Dance_Table_in_Class_Record": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a85557c3-2cb8-4f64-b8cb-bbe881d324ad"
+          }
+        },
+        "Failure_Response": {
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status_code": {
+                  "title": "Status Code",
+                  "x-ms-dynamically-added": true,
+                  "type": "number"
+                },
+                "error_message": {
+                  "title": "Error Message",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "html_table": {
+                  "title": "HTML Table",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "status_code": 501,
+              "error_message": "Table failed to generate"
+            }
+          },
+          "runAfter": {
+            "Update_HTML_Dance_Table_in_Class_Record": [
+              "TimedOut",
+              "Skipped",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e7251c24-ab96-4ddd-b862-4b418c78e932"
+          }
+        },
+        "Initialize_strDance": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strDance",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Parse_Dance_Array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7971434c-d3fa-4dfc-ab2e-826453af273a"
+          }
+        },
+        "Initialize_strMusic": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strMusic",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_strDance": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9e1ee952-8d74-4471-9d96-e388ad54b5c0"
+          }
+        },
+        "Initialize_strStepsheetURL": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strStepsheetURL",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_strMusic": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c5ac27c9-b7ad-4bc8-b9ec-7f592b1155d0"
+          }
+        },
+        "Initialize_arrDancesTaught": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrDancesTaught",
+                "type": "array"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_strStepsheetURL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "207d240b-0299-40d7-a011-c4c6fe0944df"
+          }
+        },
+        "For_each": {
+          "type": "Foreach",
+          "foreach": "@outputs('Parse_Dance_Array')['body']",
+          "actions": {
+            "Set_strDance": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "strDance",
+                "value": "@items('For_each')?['_csch_dance_value@OData.Community.Display.V1.FormattedValue']"
+              },
+              "runAfter": {
+                "Get_dance_stepsheet_URL": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a1a4327d-dca2-4f3a-987d-fffca75a5180"
+              }
+            },
+            "Set_strMusic": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "strMusic",
+                "value": "@item()?['_csch_music_value@OData.Community.Display.V1.FormattedValue']"
+              },
+              "runAfter": {
+                "Set_strDance": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ab8fee73-2f2b-4d26-820c-9e9511b987f4"
+              }
+            },
+            "Get_dance_stepsheet_URL": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "csch_dances",
+                  "recordId": "@item()?['csch_Dance']?['csch_danceid']",
+                  "$select": "csch_stepsheet"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "b5c08ecc-81e9-47db-9f9d-765db8562eb7"
+              }
+            },
+            "Append_to_array_variable": {
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "arrDancesTaught",
+                "value": {
+                  "dance": "@variables('strDance')",
+                  "music": "@variables('strMusic')",
+                  "stepsheet": "@variables('strStepsheetURL')"
+                }
+              },
+              "runAfter": {
+                "Set_strStepsheet_URL": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "981e218e-9786-44ff-be8e-0ad83df5b703"
+              }
+            },
+            "Set_strStepsheet_URL": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "strStepsheetURL",
+                "value": "@if(empty(outputs('Get_dance_stepsheet_URL')?['body/csch_stepsheet']),'Not Available',concat('<a href=\"',outputs('Get_dance_stepsheet_URL')?['body/csch_stepsheet'],'\" target=\"_blank\">Open</a>'))"
+              },
+              "runAfter": {
+                "Set_strMusic": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8d12f8bc-6d87-4d61-89cf-846a7a8f1ce4"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_arrDancesTaught": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c98d2175-9d10-4824-8f04-3199533eb24a"
+          }
+        },
+        "Parse_Dance_with_Stepsheet": {
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@variables('arrDancesTaught')",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "dance": {
+                    "type": "string"
+                  },
+                  "music": {
+                    "type": "string"
+                  },
+                  "stepsheet": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "dance",
+                  "music",
+                  "stepsheet"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "For_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0aed77ad-6a8b-4893-b1ef-cf52bf5b6857"
+          }
+        },
+        "Create_HTML_table": {
+          "type": "Table",
+          "inputs": {
+            "from": "@body('Parse_Dance_with_Stepsheet')",
+            "format": "HTML",
+            "columns": [
+              {
+                "header": "Dance",
+                "value": "@{item()['dance']}  "
+              },
+              {
+                "header": "Music",
+                "value": "@{item()['music']}  "
+              },
+              {
+                "header": "Stepsheet",
+                "value": "@{item()['stepsheet']}  "
+              }
+            ]
+          },
+          "runAfter": {
+            "Parse_Dance_with_Stepsheet": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "64c547d4-e8b5-4cd8-83dc-688625d6fa15"
+          }
+        },
+        "Update_HTML_Dance_Table_in_Class_Record": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "csch_classrecords",
+              "recordId": "@triggerBody()?['text_1']",
+              "item/csch_htmldancetable": "@replace(replace(replace(body('Create_HTML_table'),'&lt;','<'),'&gt;','>'),'&quot;','\"')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "UpdateOnlyRecord",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          },
+          "runAfter": {
+            "Create_HTML_table": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "73fb7907-9cb0-489e-9869-f3c07194b3c2"
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

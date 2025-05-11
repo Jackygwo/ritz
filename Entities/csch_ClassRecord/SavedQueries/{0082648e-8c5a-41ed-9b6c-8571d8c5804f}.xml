@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{0082648e-8c5a-41ed-9b6c-8571d8c5804f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="csch_name" select="1" icon="1" preview="1">
+        <row name="result" id="csch_classrecordid">
+          <cell name="csch_name" width="239" />
+          <cell name="csch_date" width="100" />
+          <cell name="csch_location" width="100" />
+          <cell name="csch_primaryinstructor" width="161" />
+          <cell name="csch_classtype" width="112" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="csch_classrecord">
+          <attribute name="csch_classrecordid" />
+          <attribute name="csch_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="csch_date" />
+          <attribute name="csch_location" />
+          <attribute name="csch_primaryinstructor" />
+          <attribute name="csch_classtype" />
+          <order attribute="csch_date" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Class Records" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

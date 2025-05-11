@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="csch_studentlevel" localizedName="Student Level" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <ExternalTypeName></ExternalTypeName>
+  <displaynames>
+    <displayname description="Student Level" languagecode="1033" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="179090000" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Absolute Beginner" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="179090001" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Beginner" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="179090002" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Improver" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="This level is for dancers who have a moderate level of experience and are looking to refine their skills and learn more advanced techniques." languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="179090003" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Intermediate" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="Dancers at this level have a good understanding of dance techniques and are ready to tackle more challenging choreography and styles." languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="179090004" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Advanced" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="This level is for dancers with extensive experience and a high level of skill, allowing them to explore complex routines and advanced techniques" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="179090005" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Pre-Professional" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="This level is for dancers who have a high level of skill and are preparing for a professional dance career." languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="179090006" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Professional" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="This level is for dancers who have a high level of skill and are working as professional dancers." languagecode="1033" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

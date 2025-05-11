@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>csch_1stApp</UniqueName>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="1" schemaName="account" />
+    <AppModuleComponent type="1" schemaName="contact" />
+    <AppModuleComponent type="1" schemaName="csch_campaign" />
+    <AppModuleComponent type="1" schemaName="csch_classrecord" />
+    <AppModuleComponent type="1" schemaName="csch_classtype" />
+    <AppModuleComponent type="1" schemaName="csch_dance" />
+    <AppModuleComponent type="1" schemaName="csch_dancemusicpairing" />
+    <AppModuleComponent type="1" schemaName="csch_music" />
+    <AppModuleComponent type="1" schemaName="csch_template" />
+    <AppModuleComponent type="1" schemaName="email" />
+    <AppModuleComponent type="1" schemaName="powerbireport" />
+    <AppModuleComponent type="1" schemaName="report" />
+    <AppModuleComponent type="60" id="{409635f6-7302-f011-bae2-000d3a3442a8}" />
+    <AppModuleComponent type="60" id="{5fe96b4d-7402-f011-bae2-000d3a3442a8}" />
+    <AppModuleComponent type="60" id="{b15e1327-7502-f011-bae2-000d3a3442a8}" />
+    <AppModuleComponent type="60" id="{8bd2113a-7602-f011-bae2-000d3a3442a8}" />
+    <AppModuleComponent type="60" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
+    <AppModuleComponent type="62" schemaName="csch_1stApp" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
+    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="Ritz Class Management" languagecode="1033" />
+  </LocalizedNames>
+  <appsettings>
+    <appsetting settingdefinitionid.uniquename="AppChannel">
+      <iscustomizable>1</iscustomizable>
+      <value>1</value>
+    </appsetting>
+  </appsettings>
+</AppModule>

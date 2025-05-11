@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{27d9116c-8666-4fd0-8a29-ffb9775ab65a}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="csch_name" select="1" icon="1" preview="1">
+        <row name="result" id="csch_dancemusicpairingid">
+          <cell name="csch_dance" width="100" />
+          <cell name="csch_music" width="100" />
+          <cell name="a_71252c09c7344d1283d3e5b9ab6392cd.csch_dancetype" width="174" />
+          <cell name="a_71252c09c7344d1283d3e5b9ab6392cd.csch_stepsheet" width="169" />
+          <cell name="a_71252c09c7344d1283d3e5b9ab6392cd.csch_walls" width="134" />
+          <cell name="a_bda06860d2e443bdaeff79f65033249a.csch_primaryartist" width="187" />
+          <cell name="modifiedon" width="113" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="csch_dancemusicpairing">
+          <attribute name="csch_dancemusicpairingid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="csch_music" />
+          <attribute name="csch_dance" />
+          <link-entity alias="a_71252c09c7344d1283d3e5b9ab6392cd" name="csch_dance" to="csch_dance" from="csch_danceid" link-type="outer" visible="false">
+            <attribute name="csch_dancetype" />
+            <attribute name="csch_stepsheet" />
+            <attribute name="csch_walls" />
+          </link-entity>
+          <link-entity alias="a_bda06860d2e443bdaeff79f65033249a" name="csch_music" to="csch_music" from="csch_musicid" link-type="outer" visible="false">
+            <attribute name="csch_primaryartist" />
+          </link-entity>
+          <attribute name="modifiedon" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Dance Music Pairings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

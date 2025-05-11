@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{fd52366e-2e12-f011-998a-000d3a3442a8}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{1758dfe7-3379-4439-a50a-a2379d5dec9c}" IsUserDefined="1" labelid="{fb5f2e5c-6a2f-4a25-b4f1-72848711a17e}">
+          <labels>
+            <label description="" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{4726bb9d-4203-4443-9c8f-93d9d5a20398}" labelid="{8975c320-ac36-4b30-bcab-844a32814e17}">
+                  <labels>
+                    <label description="GENERAL" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{f88b72fe-cdf4-40d7-b3d2-9dc1aa56c638}" labelid="{11c46360-76a6-4f4a-951f-1dc13d0776c1}" visible="false">
+                        <labels>
+                          <label description="Template Name" languagecode="1033" />
+                        </labels>
+                        <control id="csch_templatename" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="csch_templatename" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{12850c34-ccfe-4c44-92e9-c392644d56a6}" labelid="{b085c78f-c560-44b6-a68a-5c5d7681463e}" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{587c6ea6-6b4b-4b77-8387-389b760afd48}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Descriptions" languagecode="1033" />
+                        </labels>
+                        <control id="csch_descriptions" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="csch_descriptions" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="1" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Email Signature" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Email Signature" languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

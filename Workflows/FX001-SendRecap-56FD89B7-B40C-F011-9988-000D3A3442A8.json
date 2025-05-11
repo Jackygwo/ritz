@@ -1,0 +1,386 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "csch_sharedcommondataserviceforapps_39295"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "email GUID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": []
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "9b248338-e85c-445f-b484-dc81f51f0846"
+          }
+        }
+      },
+      "actions": {
+        "Success_Response": {
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error_message": {
+                  "title": "Error Message",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "status_code": {
+                  "title": "Status Code",
+                  "x-ms-dynamically-added": true,
+                  "type": "number"
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "error_message": "@{null}",
+              "status_code": 200
+            }
+          },
+          "runAfter": {
+            "For_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3b44507b-f361-4c9b-b7b6-a5199d86f3a5"
+          }
+        },
+        "Failure_Response": {
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error_message": {
+                  "title": "Error Message",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "status_code": {
+                  "title": "Status Code",
+                  "x-ms-dynamically-added": true,
+                  "type": "number"
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "error_message": "Flow failed or skipped.",
+              "status_code": 500
+            }
+          },
+          "runAfter": {
+            "For_each": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f3c4194c-27f7-4244-a269-4be272fcb8fc"
+          }
+        },
+        "Get_message_details": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "emails",
+              "recordId": "@triggerBody()?['text']",
+              "$select": "subject,description,statuscode",
+              "$expand": "email_activity_parties($select=_partyid_value,addressused,participationtypemask)"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          },
+          "runAfter": {}
+        },
+        "Initialize_strDescriptions": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strDescriptions",
+                "type": "string",
+                "value": "@outputs('Get_message_details')?['body/description']"
+              }
+            ]
+          },
+          "runAfter": {
+            "Get_message_details": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Initialize_strSubject": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strSubject",
+                "type": "string",
+                "value": "@outputs('Get_message_details')?['body/subject']"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_strDescriptions": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Parse_Email_Activity_Parties": {
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@outputs('Get_message_details')?['body/email_activity_parties']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@@odata.type": {
+                    "type": "string"
+                  },
+                  "@@odata.id": {
+                    "type": "string"
+                  },
+                  "@@odata.etag": {
+                    "type": "string"
+                  },
+                  "@@odata.editLink": {
+                    "type": "string"
+                  },
+                  "addressused": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "participationtypemask@OData.Community.Display.V1.FormattedValue": {
+                    "type": "string"
+                  },
+                  "participationtypemask": {
+                    "type": "integer"
+                  },
+                  "_partyid_value@OData.Community.Display.V1.FormattedValue": {
+                    "type": "string"
+                  },
+                  "_partyid_value@Microsoft.Dynamics.CRM.lookuplogicalname": {
+                    "type": "string"
+                  },
+                  "_partyid_value@odata.type": {
+                    "type": "string"
+                  },
+                  "_partyid_value": {
+                    "type": "string"
+                  },
+                  "activitypartyid@odata.type": {
+                    "type": "string"
+                  },
+                  "activitypartyid": {
+                    "type": "string"
+                  },
+                  "_partyid_value@Microsoft.Dynamics.CRM.associatednavigationproperty": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_strBccRecipients": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Filter_Activity_Parties_by_2": {
+          "type": "Query",
+          "inputs": {
+            "from": "@body('Parse_Email_Activity_Parties')",
+            "where": "@equals(item()?['participationtypemask'],2)"
+          },
+          "runAfter": {
+            "Parse_Email_Activity_Parties": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Initialize_strToRecipients": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strToRecipients",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_strSubject": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Initialize_strCCRecipients": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strCcRecipients",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_strToRecipients": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Initialize_strBccRecipients": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strBccRecipients",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {
+            "Initialize_strCCRecipients": [
+              "Succeeded"
+            ]
+          }
+        },
+        "For_each": {
+          "type": "Foreach",
+          "foreach": "@body('Filter_Activity_Parties_by_2')",
+          "actions": {
+            "Append_to_string_To_Recipient": {
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "strToRecipients",
+                "value": "@item()?['addressused']"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_Activity_Parties_by_2": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Filter_Activity_Parties_by_3": {
+          "type": "Query",
+          "inputs": {
+            "from": "@body('Parse_Email_Activity_Parties')",
+            "where": "@equals(item()?['participationtypemask'],3)"
+          },
+          "runAfter": {
+            "Parse_Email_Activity_Parties": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Filter_Activity_Parties_by_4": {
+          "type": "Query",
+          "inputs": {
+            "from": "@body('Parse_Email_Activity_Parties')",
+            "where": "@equals(item()?['participationtypemask'],4)"
+          },
+          "runAfter": {
+            "Parse_Email_Activity_Parties": [
+              "Succeeded"
+            ]
+          }
+        },
+        "For_each_Cc_Recipient": {
+          "type": "Foreach",
+          "foreach": "@body('Filter_Activity_Parties_by_3')",
+          "actions": {
+            "Append_to_string_Cc_Recipients": {
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "strCcRecipients",
+                "value": "@items('For_each_Cc_Recipient')?['addressused']"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_Activity_Parties_by_3": [
+              "Succeeded"
+            ]
+          }
+        },
+        "For_each_Bcc_recipient": {
+          "type": "Foreach",
+          "foreach": "@outputs('Filter_Activity_Parties_by_4')['body']",
+          "actions": {
+            "Append_to_string_string_bcc_recipients": {
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "strBccRecipients",
+                "value": "@item()?['addressused']"
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_Activity_Parties_by_4": [
+              "Succeeded"
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

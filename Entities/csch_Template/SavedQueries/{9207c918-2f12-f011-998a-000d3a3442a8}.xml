@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{9207c918-2f12-f011-998a-000d3a3442a8}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="csch_templatename" select="1" icon="1" preview="1">
+        <row name="result" id="csch_templateid">
+          <cell name="csch_templatename" width="200" />
+          <cell name="modifiedon" width="113" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="csch_template">&lt;attribute name="csch_templatename" /&gt;&lt;attribute name="csch_emailsub" /&gt;&lt;attribute name="csch_descriptions" /&gt;&lt;attribute name="modifiedby" /&gt;&lt;attribute name="createdon" /&gt;
+        
+        
+        <attribute name="csch_templatename" /><attribute name="csch_templateid" /><attribute name="modifiedon" /><filter type="and"><condition attribute="csch_type" operator="eq" value="179090001" /></filter></entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Email Signature Lookup" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

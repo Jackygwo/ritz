@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{8d281089-2e12-f011-998a-000d3a3442a8}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{1758dfe7-3379-4439-a50a-a2379d5dec9c}" IsUserDefined="1" labelid="{2a323b3a-6604-411d-9920-59355649b679}">
+          <labels>
+            <label description="" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{4726bb9d-4203-4443-9c8f-93d9d5a20398}" labelid="{48c1f732-b5b7-467b-8601-65392269b601}">
+                  <labels>
+                    <label description="GENERAL" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{f88b72fe-cdf4-40d7-b3d2-9dc1aa56c638}" labelid="{ed225158-41c2-4731-9966-3dedbb2c5cc8}" visible="false">
+                        <labels>
+                          <label description="Template Name" languagecode="1033" />
+                        </labels>
+                        <control id="csch_templatename" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="csch_templatename" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{12850c34-ccfe-4c44-92e9-c392644d56a6}" labelid="{c4c0e5f9-69ed-4e32-9335-df1ba228959a}" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8566eeb3-f577-4fcf-88b0-d7f16d77b742}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Subject" languagecode="1033" />
+                        </labels>
+                        <control id="csch_emailsub" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="csch_emailsub" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{587c6ea6-6b4b-4b77-8387-389b760afd48}" locklevel="0" colspan="1" rowspan="1" labelid="{48c3ac95-1a2b-4eef-b997-793a3c1facec}">
+                        <labels>
+                          <label description="Descriptions" languagecode="1033" />
+                        </labels>
+                        <control id="csch_descriptions" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="csch_descriptions" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="2" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Email Template" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Email Template" languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

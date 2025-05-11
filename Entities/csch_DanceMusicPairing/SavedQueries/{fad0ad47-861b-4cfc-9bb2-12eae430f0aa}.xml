@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{fad0ad47-861b-4cfc-9bb2-12eae430f0aa}</savedqueryid>
+    <layoutxml>
+      <grid name="csch_dancemusicpairings" jump="csch_name" select="1" icon="1" preview="0">
+        <row name="csch_dancemusicpairing" id="csch_dancemusicpairingid">
+          <cell name="csch_name" width="300" />
+          <cell name="csch_music" width="100" />
+          <cell name="a_33e68d665c004df9857d7966979bc63d.csch_primaryartist" width="187" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="csch_dancemusicpairing">
+          <attribute name="csch_dancemusicpairingid" />
+          <attribute name="csch_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="csch_music" />
+          <link-entity alias="a_33e68d665c004df9857d7966979bc63d" name="csch_music" to="csch_music" from="csch_musicid" link-type="outer" visible="false">
+            <attribute name="csch_primaryartist" />
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Dance Music Pairing Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

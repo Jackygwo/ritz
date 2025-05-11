@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{29a213c0-5aec-42a5-ae69-9e73f838f7ad}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="csch_linkname" select="1" icon="1" preview="1">
+        <row name="result" id="csch_linkid">
+          <cell name="csch_linkname" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="csch_link">
+          <attribute name="csch_linkid" />
+          <attribute name="csch_linkname" />
+          <attribute name="createdon" />
+          <order attribute="csch_linkname" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Links" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

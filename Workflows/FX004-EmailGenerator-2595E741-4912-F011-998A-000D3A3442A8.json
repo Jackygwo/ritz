@@ -1,0 +1,209 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "csch_sharedcommondataserviceforapps_39295"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "cd673a55-dbd8-4682-9beb-6ef56b41b401"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "description": "GUID",
+                  "title": "Regarding",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_1": {
+                  "description": "contact, campaign",
+                  "title": "Regarding Type",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_2": {
+                  "description": "Email Subject",
+                  "title": "Subject",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_3": {
+                  "description": "Email Body",
+                  "title": "Body",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_4": {
+                  "description": "[{\"participationtypemask\": 1, \"partyid@odata.bind\": \"entityname(guid)\"}] 1 for Sender 2 for To 3 for Cc 4 for Bcc",
+                  "title": "Participant Array",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_7": {
+                  "description": "campaign guid",
+                  "title": "Campaign",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "required": []
+            },
+            "headersSchema": {
+              "x-ms-user-timestamp": {
+                "title": "Timestamp",
+                "type": "string",
+                "x-ms-dynamically-added": false
+              }
+            }
+          }
+        }
+      },
+      "actions": {
+        "Switch": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "campaign": {
+              "case": "campaign",
+              "actions": {
+                "Add_a_new_message": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "a003003b-1b1f-4b65-92fc-ea27a03db2d2"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "emails",
+                      "item/activitypointer_activity_parties": "@body('Parse_JSON')",
+                      "item/csch_Campaign_Email@odata.bind": "csch_campaigns(@{triggerBody()?['text_7']})",
+                      "item/description": "@triggerBody()?['text_3']",
+                      "item/regardingobjectid_contact_email@odata.bind": "contacts(@{triggerBody()?['text']})",
+                      "item/subject": "@triggerBody()?['text_2']"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                },
+                "Set_strNewMessageGUID_to_new_campaign_message_guid": {
+                  "runAfter": {
+                    "Add_a_new_message": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "76934d2f-e193-406e-a970-d539f74bba74"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "strNewMessageGUID",
+                    "value": "@outputs('Add_a_new_message')?['body/activityid']"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()?['text_1']",
+          "metadata": {
+            "operationMetadataId": "0ef0a4fd-9c51-4657-bd0e-b1c59891c6bc"
+          },
+          "type": "Switch"
+        },
+        "Initialize_strNewMessageGUID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "4dfbeb8c-f009-47d9-a238-f88d399683a8"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strNewMessageGUID",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "Initialize_strNewMessageGUID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f4f3d003-1a0a-4279-a4ee-247d16e17d89"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()?['text_4']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "participationtypemask": {
+                    "type": "integer"
+                  },
+                  "partyid@odata.bind": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "participationtypemask",
+                  "partyid@odata.bind"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

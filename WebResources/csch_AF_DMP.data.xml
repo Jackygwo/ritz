@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{5f1d58a5-361d-f011-998a-000d3a3442a8}</WebResourceId>
+  <Name>csch_AF_DMP</Name>
+  <DisplayName>AF Dance Music Pairing</DisplayName>
+  <Description>Auto Fill Fields for Dance Music Pairing</Description>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/csch_AF_DMP5F1D58A5-361D-F011-998A-000D3A3442A8</FileName>
+</WebResource>

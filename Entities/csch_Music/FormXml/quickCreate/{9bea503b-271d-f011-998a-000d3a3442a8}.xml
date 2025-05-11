@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{9bea503b-271d-f011-998a-000d3a3442a8}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="F931FFE2-B873-473F-8F95-9502F0AA3F5E" name="tab_1" showlabel="false" labelid="{1b33e0a4-6435-4b75-a82b-f5f8c3601d3a}">
+          <labels>
+            <label description="New Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section id="0C655D4E-C6E3-424E-9AF5-71E72D30D12E" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{d9171110-1922-4bfd-a5d7-b6033fea0199}">
+                  <labels>
+                    <label description="Basic" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{75d1d874-4679-4c0c-810c-f0dce79b07bf}" locklevel="0" colspan="1" rowspan="1" labelid="{aef66828-7d36-4b14-b981-63a4fe689f82}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="csch_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="csch_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c5d53026-4542-4e68-a5e1-2a03e9bf9864}" locklevel="0" colspan="1" rowspan="1" labelid="{84ca1ad7-cf31-41f6-b4f7-267b7662f599}">
+                        <labels>
+                          <label description="Primary Artist" languagecode="1033" />
+                        </labels>
+                        <control id="csch_primaryartist" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="csch_primaryartist" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f1ba2011-024c-479a-acd3-7664804db7e8}" locklevel="0" colspan="1" rowspan="1" labelid="{aefba8d5-3c00-4f64-8c83-56f4046c48c2}">
+                        <labels>
+                          <label description="Year" languagecode="1033" />
+                        </labels>
+                        <control id="csch_year" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="csch_year" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="02DECBA0-3AE2-484D-A19F-C5353AF4F4F2" name="tab_1_column_2_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" visible="false" labelid="{6aeccf8a-e599-4652-b3fc-2cf69ed3c0f1}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="266FE48D-4D04-4E9A-8C5A-7DEF9A2F059B" labelid="{593856f3-7eb9-46f7-ba50-dccbd49539bf}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="46FD66EA-B686-41D9-AAE0-C565BD78EC1F" name="tab_1_column_3_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" visible="false" labelid="{b0eca135-ab61-4658-9d56-b0dbcfce92a4}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="07C04A4E-A482-45CC-BAB7-7FCA3CD02938" labelid="{ae61066e-195d-4307-bb78-3672f24ac4be}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Quick Create Form" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

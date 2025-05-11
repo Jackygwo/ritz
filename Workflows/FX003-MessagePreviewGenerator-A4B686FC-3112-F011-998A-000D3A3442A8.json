@@ -1,0 +1,212 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "csch_sharedcommondataserviceforapps_39295"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "campaign guid",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "ab04749b-2951-4069-9223-afeb5eba7136"
+          }
+        }
+      },
+      "actions": {
+        "Get_a_row_by_ID": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "csch_campaigns",
+              "recordId": "@triggerBody()['text']",
+              "$expand": "csch_Camp_Event_Relation($select=csch_classrecordid)"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "7cdbafaa-1738-43aa-b8fc-09ea12b106eb"
+          }
+        },
+        "Parse_JSON_csch_Camp_Event_Relation": {
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@outputs('Get_a_row_by_ID')?['body/csch_Camp_Event_Relation']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@@odata.type": {
+                    "type": "string"
+                  },
+                  "@@odata.id": {
+                    "type": "string"
+                  },
+                  "@@odata.etag": {
+                    "type": "string"
+                  },
+                  "@@odata.editLink": {
+                    "type": "string"
+                  },
+                  "csch_classrecordid@odata.type": {
+                    "type": "string"
+                  },
+                  "csch_classrecordid": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "@@odata.type",
+                  "@@odata.id",
+                  "@@odata.etag",
+                  "@@odata.editLink",
+                  "csch_classrecordid@odata.type",
+                  "csch_classrecordid"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Apply_to_each_event_record": {
+          "type": "Foreach",
+          "foreach": "@body('Parse_JSON_csch_Camp_Event_Relation')",
+          "actions": {
+            "Get_a_class_record": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "csch_classrecords",
+                  "recordId": "@item()['csch_classrecordid']",
+                  "$select": "_csch_primaryinstructor_value, csch_date, _csch_classtype_value,csch_name, csch_htmldancetable",
+                  "$expand": "csch_ClassAttend_Relationship($select=contactid,fullname,emailaddress1)"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              }
+            },
+            "Add_students_and_deduplicate_arrContacts": {
+              "type": "Compose",
+              "inputs": "@union(outputs('Get_a_class_record')?['body/csch_ClassAttend_Relationship'],variables('arrContacts'))",
+              "runAfter": {
+                "Get_a_class_record": [
+                  "SUCCEEDED"
+                ]
+              }
+            },
+            "Set_arrContacts": {
+              "type": "SetVariable",
+              "inputs": {
+                "name": "arrContacts",
+                "value": "@outputs('Add_students_and_deduplicate_arrContacts')"
+              },
+              "runAfter": {
+                "Add_students_and_deduplicate_arrContacts": [
+                  "SUCCEEDED"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_arrContacts": [
+              "SUCCEEDED"
+            ]
+          }
+        },
+        "Initialize_arrContacts": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrContacts",
+                "type": "array"
+              }
+            ]
+          },
+          "runAfter": {
+            "Parse_JSON_csch_Camp_Event_Relation": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "type": "Foreach",
+          "foreach": "@variables('arrContacts')",
+          "actions": {
+            "List_rows": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "activitypointers",
+                  "$top": 10
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Apply_to_each_event_record": [
+              "SUCCEEDED"
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

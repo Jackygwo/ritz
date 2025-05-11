@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.2.25041.248" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25041.248" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25041.00248">
+  <SolutionManifest>
+    <UniqueName>1stSolution</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="1st Solution" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>1.0.0.1</Version>
+    <Managed>0</Managed>
+    <Publisher>
+      <UniqueName>CS_Ranch</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="CS Ranch" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions />
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <CustomizationPrefix>csch</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>17909</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="1" schemaName="account" behavior="1" />
+      <RootComponent type="1" schemaName="contact" behavior="1" />
+      <RootComponent type="1" schemaName="csch_campaign" behavior="0" />
+      <RootComponent type="1" schemaName="csch_classrecord" behavior="0" />
+      <RootComponent type="1" schemaName="csch_classtype" behavior="0" />
+      <RootComponent type="1" schemaName="csch_dance" behavior="0" />
+      <RootComponent type="1" schemaName="csch_dancemusicpairing" behavior="0" />
+      <RootComponent type="1" schemaName="csch_link" behavior="0" />
+      <RootComponent type="1" schemaName="csch_music" behavior="0" />
+      <RootComponent type="1" schemaName="csch_teachrecord" behavior="0" />
+      <RootComponent type="1" schemaName="csch_template" behavior="0" />
+      <RootComponent type="1" schemaName="email" behavior="1" />
+      <RootComponent type="29" id="{2595e741-4912-f011-998a-000d3a3442a8}" behavior="0" />
+      <RootComponent type="29" id="{3ee995ec-9b18-f011-998a-000d3a3442a8}" behavior="0" />
+      <RootComponent type="29" id="{56fd89b7-b40c-f011-9988-000d3a3442a8}" behavior="0" />
+      <RootComponent type="29" id="{83676b85-ad0c-f011-9988-000d3a3442a8}" behavior="0" />
+      <RootComponent type="29" id="{8c718853-b80c-f011-9988-000d3a3442a8}" behavior="0" />
+      <RootComponent type="29" id="{a4b686fc-3112-f011-998a-000d3a3442a8}" behavior="0" />
+      <RootComponent type="29" id="{e249f107-9d18-f011-998a-000d3a3442a8}" behavior="0" />
+      <RootComponent type="61" schemaName="csch_AF_DMP" behavior="0" />
+      <RootComponent type="62" schemaName="csch_1stApp" behavior="0" />
+      <RootComponent type="80" schemaName="csch_1stApp" behavior="0" />
+      <RootComponent type="9" schemaName="csch_contacttype" behavior="0" />
+      <RootComponent type="9" schemaName="csch_dancetype" behavior="0" />
+      <RootComponent type="9" schemaName="csch_linedancewalls" behavior="0" />
+      <RootComponent type="9" schemaName="csch_linktype" behavior="0" />
+      <RootComponent type="9" schemaName="csch_studentlevel" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="csch_classattendance" displayName="Class Attendance" solution="Active" />
+        <Dependent type="1" schemaName="csch_classrecord" displayName="Class Record" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="powerbireport" displayName="Power BI Report" solution="msft_PowerBI_Entities (1.0.0.141)">
+          <package appName="Power BI" version="1.0.0.141">msft_PowerBI_Anchor (1.0.0.141)</package>
+        </Required>
+        <Dependent type="80" schemaName="csch_1stApp" displayName="Ritz Class Management" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="All Contacts" displayName="All Contacts" parentSchemaName="contact" parentDisplayName="Contact" solution="msdynce_AppCommon (9.0.4.0066)" id="{0d5d377b-5e7c-47b5-bab1-a5cb8b4ac105}">
+          <package appName="msdynce_AppCommon" version="9.0.25041.10001">msdynce_AppCommonAnchor (9.0.25041.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Information" parentDisplayName="Class Record" id="{d1093484-f4ba-4ca5-9bb8-21e41b1ea41a}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="All Students" displayName="All Students" parentSchemaName="contact" parentDisplayName="Contact" solution="Active" id="{c136a46d-2d07-f011-bae2-000d3a3442a8}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Class Record" id="{d1093484-f4ba-4ca5-9bb8-21e41b1ea41a}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="60" displayName="Contact" parentDisplayName="Contact" solution="msdynce_AppCommon (9.0.4.0066)" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}">
+          <package appName="msdynce_AppCommon" version="9.0.25041.10001">msdynce_AppCommonAnchor (9.0.25041.10001)</package>
+        </Required>
+        <Dependent type="80" schemaName="csch_1stApp" displayName="Ritz Class Management" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package appName="msdynce_AppCommon" version="9.0.25041.10001">msdynce_AppCommonAnchor (9.0.25041.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Main Artist" parentDisplayName="Contact" id="{5fe96b4d-7402-f011-bae2-000d3a3442a8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package appName="msdynce_AppCommon" version="9.0.25041.10001">msdynce_AppCommonAnchor (9.0.25041.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Main Choreographer" parentDisplayName="Contact" id="{8bd2113a-7602-f011-bae2-000d3a3442a8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package appName="msdynce_AppCommon" version="9.0.25041.10001">msdynce_AppCommonAnchor (9.0.25041.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Main Instructor" parentDisplayName="Contact" id="{b15e1327-7502-f011-bae2-000d3a3442a8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)">
+          <package appName="AppModule Web Resources Package" version="2.5">AppModuleWebResources (2.5)</package>
+        </Required>
+        <Dependent type="80" schemaName="csch_1stApp" displayName="Ritz Class Management" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.Grid.GridControl" displayName="MscrmControls.Grid.GridControl" solution="BaseCustomControlsCore (9.0.2504.1014)">
+          <package appName="Base Custom Controls" version="9.0.2504.1014">BaseCustomControlsCore (9.0.2504.1014)</package>
+        </Required>
+        <Dependent type="26" schemaName="Active Dances" displayName="Active Dances" parentSchemaName="csch_dance" parentDisplayName="Dance" id="{9a937622-3262-4d61-861a-1dd68dc63f59}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.ModelForm.ModelFormControl" displayName="MscrmControls.ModelForm.ModelFormControl" solution="BaseCustomControlsCore (9.0.2504.1014)">
+          <package appName="Base Custom Controls" version="9.0.2504.1014">BaseCustomControlsCore (9.0.2504.1014)</package>
+        </Required>
+        <Dependent type="60" displayName="Information" parentDisplayName="Dance Music Pairing" id="{bc8f3657-5216-41ac-902c-622bfb6e77c1}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.12)" id.uniquename="AppChannel">
+          <package appName="PowerAppsAppFramework Package" version="1.0.0.17">PowerAppsAppFramework_Anchor (1.0.0.17)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=csch_1stApp,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="csch_1stApp" id.settingdefinitionid.uniquename="AppChannel" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>

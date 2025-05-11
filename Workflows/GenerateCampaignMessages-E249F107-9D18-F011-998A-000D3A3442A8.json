@@ -1,0 +1,672 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "csch_sharedcommondataserviceforapps_39295"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "splitOn": "@triggerBody()['rows']",
+          "metadata": {
+            "operationMetadataId": "29bc4c78-9c6e-4b3a-b0f7-6c0d5a20a758"
+          },
+          "type": "Request",
+          "kind": "ApiConnection",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity": {
+                        "type": "object",
+                        "properties": {
+                          "csch_campaignid": {
+                            "title": "Campaign",
+                            "type": "string",
+                            "format": "guid"
+                          }
+                        },
+                        "required": [
+                          "csch_campaignid"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "entity"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "rows"
+              ]
+            },
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_commondataserviceforapps']['connectionId']"
+              }
+            },
+            "operationId": "RecordSelected",
+            "parameters": {
+              "entityName": "csch_campaigns"
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_existing_emails": {
+          "runAfter": {
+            "Initialize_strCampGuid": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "50c9e4d3-5bee-466d-ba35-21b5e3de7eb7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "emails",
+              "$select": "email_activity_parties",
+              "$filter": "_regardingobjectid_value eq '@{variables('strCampGuid')}'",
+              "$expand": "email_activity_parties($select=addressused,participationtypemask,_partyid_value)"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Initialize_strCampGuid": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1f80a277-db50-4e74-b476-65dc695683d9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strCampGuid",
+                "type": "string",
+                "value": "@triggerBody()?['entity']['csch_campaignid']"
+              }
+            ]
+          }
+        },
+        "Get_Class_Records": {
+          "runAfter": {
+            "Initialize_strCampGuid": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2cb2b6e3-2d07-4575-9d8a-af27bc09da25"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "csch_campaigns",
+              "recordId": "@variables('strCampGuid')",
+              "$select": "csch_Camp_Event_Relation",
+              "$expand": "csch_Camp_Event_Relation($select=csch_classrecordid)"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Parse_Class_Records": {
+          "runAfter": {
+            "Get_Class_Records": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "63ee8504-99de-4bec-bdb5-026f34a8d35c"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@outputs('Get_Class_Records')?['body/csch_Camp_Event_Relation']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@@odata.type": {
+                    "type": "string"
+                  },
+                  "@@odata.id": {
+                    "type": "string"
+                  },
+                  "@@odata.etag": {
+                    "type": "string"
+                  },
+                  "@@odata.editLink": {
+                    "type": "string"
+                  },
+                  "csch_classrecordid@odata.type": {
+                    "type": "string"
+                  },
+                  "csch_classrecordid": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_Class_Records')",
+          "actions": {
+            "Get_Class_Attendances": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "3ac3a5cf-9c10-4496-bf46-1d3a06685bbe"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "csch_classrecords",
+                  "recordId": "@item()?['csch_classrecordid']",
+                  "$select": "csch_ClassAttend_Relationship",
+                  "$expand": "csch_ClassAttend_Relationship($select=contactid,emailaddress1)"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Union_Existing_arrrContactObj_with_Class_Attendants": {
+              "runAfter": {
+                "Get_Class_Attendances": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "bc989d82-c6e0-4840-8457-c248fcf39e75"
+              },
+              "type": "Compose",
+              "inputs": "@union(outputs('Get_Class_Attendances')?['body/csch_ClassAttend_Relationship'],variables('arrContactObj'))"
+            },
+            "Set_variable": {
+              "runAfter": {
+                "Union_Existing_arrrContactObj_with_Class_Attendants": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9546129a-ae29-4fba-ba61-1fc4de5c8e27"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "arrContactObj",
+                "value": "@outputs('Union_Existing_arrrContactObj_with_Class_Attendants')"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_arrContactObj": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4a8f2f51-2524-4386-a7a4-08c5080f66a3"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_arrEmails": {
+          "runAfter": {
+            "Parse_Class_Records": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "08e77f80-a0fa-437b-ba43-cb809230500e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrEmails",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_arrContactObj": {
+          "runAfter": {
+            "Initialize_arrEmails": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ca43fedb-f35b-45bd-803d-6ea93df9f67c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrContactObj",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Parse_arrContactObj": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "78bff9f8-8f52-4f0c-85a0-ca9107777b42"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@variables('arrContactObj')",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@@odata.type": {
+                    "type": "string"
+                  },
+                  "@@odata.id": {
+                    "type": "string"
+                  },
+                  "@@odata.etag": {
+                    "type": "string"
+                  },
+                  "@@odata.editLink": {
+                    "type": "string"
+                  },
+                  "emailaddress1": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "contactid@odata.type": {
+                    "type": "string"
+                  },
+                  "contactid": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "emailaddress1"
+                ]
+              }
+            }
+          }
+        },
+        "For_arrContactObj": {
+          "foreach": "@outputs('Parse_arrContactObj')['body']",
+          "actions": {
+            "Set_strCurrentContactGUID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "0f97e8c4-8c98-48ac-9031-9339ef851998"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "strCurrentContactGUID",
+                "value": "@item()?['contactid']"
+              }
+            },
+            "Filter_array": {
+              "runAfter": {
+                "Set_strCurrentContactGUID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cf7a8797-4d13-4bb6-92d2-4301f1806334"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Parse_arrExistContactObj')",
+                "where": "@equals(item()['contactid'],variables('strCurrentContactGUID'))"
+              }
+            },
+            "No_existing_record": {
+              "actions": {
+                "Add_a_new_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "2d824247-8d83-47b8-9b96-783249e12ed5"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "CreateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "emails",
+                      "item/activitypointer_activity_parties": [
+                        {
+                          "participationtypemask": 2,
+                          "partyid@odata.bind": "contacts(@{variables('strCurrentContactGUID')})"
+                        }
+                      ],
+                      "item/regardingobjectid_csch_campaign_email@odata.bind": "csch_campaigns(@{variables('strCampGuid')})"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Filter_array": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@length(body('Filter_array'))",
+                      0
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7e9d54cb-861c-4adc-b40e-458dd0a91513"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Parse_arrExistContactObj": [
+              "Succeeded"
+            ],
+            "Initialize_strCurrentContactGUID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2420913c-46ef-4d34-9981-1509d3fa3cc4"
+          },
+          "type": "Foreach"
+        },
+        "For_each_existing_email": {
+          "foreach": "@outputs('List_existing_emails')?['body/value']",
+          "actions": {
+            "Parse_Activity_Parties": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "bb6d845d-547b-485a-8d09-be299bd8075c"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@item()?['email_activity_parties']",
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "@@odata.type": {
+                        "type": "string"
+                      },
+                      "@@odata.id": {
+                        "type": "string"
+                      },
+                      "@@odata.etag": {
+                        "type": "string"
+                      },
+                      "@@odata.editLink": {
+                        "type": "string"
+                      },
+                      "addressused": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "_activityid_value@Microsoft.Dynamics.CRM.associatednavigationproperty": {
+                        "type": "string"
+                      },
+                      "_activityid_value@Microsoft.Dynamics.CRM.lookuplogicalname": {
+                        "type": "string"
+                      },
+                      "_activityid_value@odata.type": {
+                        "type": "string"
+                      },
+                      "_activityid_value": {
+                        "type": "string"
+                      },
+                      "participationtypemask@OData.Community.Display.V1.FormattedValue": {
+                        "type": "string"
+                      },
+                      "participationtypemask": {
+                        "type": "integer"
+                      },
+                      "_partyid_value@Microsoft.Dynamics.CRM.lookuplogicalname": {
+                        "type": "string"
+                      },
+                      "_partyid_value@odata.type": {
+                        "type": "string"
+                      },
+                      "_partyid_value": {
+                        "type": "string"
+                      },
+                      "activitypartyid@odata.type": {
+                        "type": "string"
+                      },
+                      "activitypartyid": {
+                        "type": "string"
+                      },
+                      "activityid_activitypointer@odata.associationLink": {
+                        "type": "string"
+                      },
+                      "activityid_activitypointer@odata.navigationLink": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "addressused",
+                      "_partyid_value"
+                    ]
+                  }
+                }
+              }
+            },
+            "For_each_party": {
+              "foreach": "@body('Filter_by_To')",
+              "actions": {
+                "Append_to_arrExistContactObj": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "6393ac7a-f29f-4eb8-b58e-58501376aced"
+                  },
+                  "type": "AppendToArrayVariable",
+                  "inputs": {
+                    "name": "arrExistContactObj",
+                    "value": {
+                      "contactid": "@{item()['_partyid_value']}",
+                      "email": "@{item()['addressused']}"
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Filter_by_To": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2c7588b2-803c-47b8-8adf-120306dd93f2"
+              },
+              "type": "Foreach"
+            },
+            "Filter_by_To": {
+              "runAfter": {
+                "Parse_Activity_Parties": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "68d5023b-d346-458a-9036-385827a49e4b"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Parse_Activity_Parties')",
+                "where": "@equals(item()?['participationtypemask'],2)"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_arrExistContactObj": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e7db3183-32dd-45f4-94b0-896f07bc0e8e"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_arrExistContactObj": {
+          "runAfter": {
+            "List_existing_emails": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "112f17ad-3634-4f17-9f9e-0c17930077f2"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrExistContactObj",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_arrUniqueContactObj": {
+          "runAfter": {
+            "Parse_arrContactObj": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a93ebfb9-4ea1-46e2-837f-74fb90166aa8"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "arrUniqueContactObj",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Parse_arrExistContactObj": {
+          "runAfter": {
+            "For_each_existing_email": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3ecb9686-e752-4ccf-8ed4-7ccdfa4b15d9"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@variables('arrExistContactObj')",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "contactid": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "contactid",
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+        "Initialize_strCurrentContactGUID": {
+          "runAfter": {
+            "Initialize_arrUniqueContactObj": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bce93e06-bea9-431f-bc04-e371f09c5593"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strCurrentContactGUID",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

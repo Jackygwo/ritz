@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{df4176a1-da4c-4929-965d-3d9d8b469e96}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{83394f56-912e-47b8-a8f9-d0eda0c685db}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{6be3e506-58a1-4c63-9f8e-c2659ee7aace}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b04b26f7-4c50-48cf-9c68-3c102c44f2db}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="csch_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="csch_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cd070de5-2c85-40fc-b160-b4f0f54ca566}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b7801131-230b-4ca3-8cd2-b2640ae1ade1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Primary Artist" languagecode="1033" />
+                        </labels>
+                        <control id="csch_primaryartist" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="csch_primaryartist" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{205f723a-ce69-43e8-8a2c-82281e183e30}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Year" languagecode="1033" />
+                        </labels>
+                        <control id="csch_year" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="csch_year" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{9b9a38fc-e66b-44b4-b1c0-2bd589b55b14}" rowspan="4" colspan="1" auto="false">
+                        <labels>
+                          <label description="Related Dances" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>true</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>csch_dancemusicpairing_Music_csch_music</RelationshipName>
+                            <TargetEntityType>csch_dancemusicpairing</TargetEntityType>
+                            <ViewId>{27d9116c-8666-4fd0-8a29-ffb9775ab65a}</ViewId>
+                            <ViewIds>{27d9116c-8666-4fd0-8a29-ffb9775ab65a}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{c62988b0-4892-479b-9bce-2b898a032203}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{474f213c-1370-45b8-8870-605a2c3a477c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9171b0ef-8379-42ad-a524-46dcd401a440}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{76e34be4-79aa-4256-9ccf-b685ad110a5f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{c3fe93ff-7d9a-44b8-87b0-14762c3c79c6}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{e56c5ef4-247a-4248-b0e3-beae0347c662}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c55a696c-b6b2-4e2a-bf08-0c447787909b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9ecc1865-ce43-42fd-a06e-aed4bc760927}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
