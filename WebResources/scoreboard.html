@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto-Refreshing Scoreboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="live-scores-heading">Live Scores</h1>
+
+  <div id="score-container" role="region" aria-labelledby="live-scores-heading">
+    <div class="scorestream-widget-container"
+         data-ss_widget_type="horzScoreboard"
+         data-user-widget-id="65468">
+    </div>
+  </div>
+
+  <script defer type="text/javascript"
+          src="https://scorestream.com/apiJsCdn/widgets/embed.js"
+          id="ss-script">
+  </script>
+
+  <script>
+    function reloadScoreStreamWidget() {
+      const container = document.getElementById("score-container");
+
+      container.innerHTML = `
+        <div class="scorestream-widget-container"
+             data-ss_widget_type="horzScoreboard"
+             data-user-widget-id="65468">
+        </div>
+      `;
+
+      const existingScript = document.getElementById("ss-script");
+      if (existingScript) existingScript.remove();
+
+      const script = document.createElement("script");
+      script.defer = true;
+      script.src = "https://scorestream.com/apiJsCdn/widgets/embed.js";
+      script.id = "ss-script";
+      document.body.appendChild(script);
+    }
+
+    setInterval(reloadScoreStreamWidget, 30000);
+  </script>
+</body>
+</html>
